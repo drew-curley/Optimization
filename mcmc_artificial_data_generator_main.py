@@ -6,7 +6,7 @@ import os
 # CONFIGURATION
 # ============================================================
 
-OUTPUT_PATH = r"C:\Users\dcurl\Desktop\Input\mcmc"
+OUTPUT_PATH = r"C:\Users\dcurl\Desktop\mcmc"
 FILENAME = "donors.csv"
 N_DONORS = 10000  # Change this to generate more donors
 
@@ -125,8 +125,14 @@ def add_realistic_patterns(df):
            'last gift amount'] *= (1 + tenure_bonus[non_zero_mask])
     df['last gift amount'] = df['last gift amount'].round(2)
 
+    # --------------------------------------------------------
+    # ADD USER ID
+    # --------------------------------------------------------
+    df.insert(0, 'user_id', np.arange(1, len(df) + 1))
+
     # Reorder columns to match expected format
     column_order = [
+        'user_id',
         'recency', 'frequency', 'tenure', 'capacity score',
         'last gift amount', 'region', 'age', 'gender', 'marital status'
     ]
