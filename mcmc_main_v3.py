@@ -18,9 +18,10 @@ import os
 # FILE PATHS - WSL2 accesses Windows files via /mnt/c/
 # ============================================================
 
-INPUT_FILE = "/mnt/c/Users/dcurl/Desktop/Input/mcmc/donors.csv"
-OUTPUT_FILE = "/mnt/c/Users/dcurl/Desktop/Input/mcmc/top_50_donors.csv"
-TRACE_FILE = "/mnt/c/Users/dcurl/Desktop/Input/mcmc/donor_trace.nc"
+INPUT_FILE_A = ~/mcmc_artificial_data_main.csv
+INPUT_FILE_B = ~/donor_wealth_capacity_data.csv
+OUTPUT_FILE = ~/top_50_donors.csv
+TRACE_FILE = ~/ donor_trace.nc
 
 # ============================================================
 # GPU CONFIGURATION
@@ -404,3 +405,4 @@ if __name__ == "__main__":
     print(f"\nOutput files (accessible from Windows):")
     print(f"  - C:\\Users\\dcurl\\Desktop\\Input\\mcmc\\top_50_donors.csv")
     print(f"  - C:\\Users\\dcurl\\Desktop\\Input\\mcmc\\donor_trace.nc")
+
