@@ -36,5 +36,7 @@ A rewritten MCMC model designed to run on CUDA-enabled GPUs for significant perf
 
 mcmcv4 
 
-mcmcv5
+Adapted to silicon, but bad file paths
 
+mcmcv5
+Fully-functional, bifrucated. Embedded MCMC runs first on separate script. mcmcv6 to combine...
