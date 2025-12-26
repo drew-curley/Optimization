@@ -1,42 +1,128 @@
-Repository Contents
-donors.csv
+## Repository Contents
 
-A synthetic dataset containing 10,000 artificial donor records (default).
-Each row represents one donor, and each column corresponds to a feature used in modeling—such as recency, frequency, tenure, capacity score, gift history, age, region, and more.
+### `donors.csv`
 
-mcmc_artificial_data_generators.py
+A **synthetic dataset containing 10,000 artificial donor records** (default).
 
-A Python script for generating artificial donor data.
-Useful for testing, simulation workflows, and rapid experiments without relying on real donor information. It assigns Wealth Capcity Score, does not generate. OUtput saved as donors_artificial_data_main.csv
+Each row represents a single donor, and each column corresponds to a feature used in the modeling process, including:
 
-Wealth Capacity Score
+* Recency
+* Frequency
+* Tenure
+* Capacity score
+* Gift history
+* Age
+* Region
+* Additional demographic and behavioral variables
 
-This repository uses a Wealth Capacity Score (WCS) as a unified metric representing a donor’s potential wealth and capacity for large gifts.
-The formula combines key behavioral and financial indicators into a single interpretable score.
+This file serves as a **standalone donor table** suitable for testing donor models, optimization routines, and MCMC workflows without using real donor data.
 
-data_generator_fpr_wealth_capacity_score.py
+---
 
-A Python script for generating artificial donor Wealth Capacity scrore data.
-Useful for testing, simulation workflows, and rapid experiments without relying on real donor information. It assigns home values and locations, then generates Wealth Capcity Score. Output saved as mcmc_artificial_data_main.csv.
+### `mcmc_artificial_data_generators.py`
 
-MCMC Model Versions
-mcmcv1
+A Python script for **generating artificial donor data**.
 
-The initial concept implementation.
-A minimal, exploratory version demonstrating the basic ideas behind using MCMC for donor modeling.
+This script is intended for:
 
-mcmcv2
+* Simulation workflows
+* Rapid experimentation
+* Model testing without reliance on real donor information
 
-The first fully functioning MCMC model.
-Includes a complete sampling workflow, likelihood definitions, and feature integration.
+It assigns a **Wealth Capacity Score (WCS)** directly as a latent indicator of donor potential.
+It **does not** generate home values or geographic features.
 
-mcmcv3
+**Output:**
+`donors_artificial_data_main.csv`
 
-A rewritten MCMC model designed to run on CUDA-enabled GPUs for significant performance improvements in large-scale datasets or more complex parameter spaces.
+---
 
-mcmcv4 
+### Wealth Capacity Score (WCS)
 
-Adapted to silicon, but bad file paths
+This repository uses a **Wealth Capacity Score (WCS)** as a unified, interpretable metric representing a donor’s potential wealth and capacity for large gifts.
 
-mcmcv5
-Fully-functional, bifrucated. Embedded MCMC runs first on separate script. mcmcv6 to combine...
+The WCS aggregates key behavioral and financial indicators into a single score designed to act as a **latent proxy for donor wealth**. While synthetic, it mirrors how capacity scores are used in real-world fundraising analytics.
+
+---
+
+### `data_generator_for_wealth_capacity_score.py`
+
+A Python script for generating **artificial donor wealth data** used to construct the Wealth Capacity Score.
+
+This script:
+
+* Assigns **home values**
+* Assigns **geographic locations**
+* Derives a **Wealth Capacity Score** from those inputs
+
+It is designed for testing and simulation workflows that require **externally grounded wealth signals** (e.g., housing-based proxies).
+
+**Output:**
+`mcmc_artificial_data_main.csv`
+
+---
+
+## MCMC Model Versions
+
+### `mcmcv1`
+
+The **initial conceptual implementation**.
+
+A minimal, exploratory version demonstrating the core idea of applying MCMC methods to donor modeling and value estimation.
+
+---
+
+### `mcmcv2`
+
+The **first fully functioning MCMC model**.
+
+Includes:
+
+* A complete sampling workflow
+* Explicit likelihood definitions
+* Integration of donor features into the probabilistic model
+
+---
+
+### `mcmcv3`
+
+A **rewritten MCMC model optimized for CUDA-enabled GPUs**.
+
+Designed to achieve significant performance improvements when working with:
+
+* Large donor datasets
+* Higher-dimensional parameter spaces
+* More computationally intensive sampling strategies
+
+---
+
+### `mcmcv4`
+
+An adaptation of the MCMC model for **Apple Silicon** environments.
+
+This version is functionally incomplete due to incorrect or hard-coded file paths and is retained primarily for reference.
+
+---
+
+### `mcmcv5`
+
+The **current, fully functional main version**.
+
+Key characteristics:
+
+* Bifurcated architecture
+* MCMC sampling executed in a separate embedded script
+* Clean separation between data generation, inference, and ranking
+
+This version serves as the **primary implementation used by the repository**.
+
+---
+
+### `mcmcv6` (Planned)
+
+A future version intended to:
+
+* Recombine bifurcated components
+* Consolidate MCMC execution into a single, unified pipeline
+* Improve maintainability and extensibility
+
